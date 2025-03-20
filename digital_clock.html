@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav{
+            background-color: rgb(5, 8, 53);
+            width: 100%;
+            height: 45px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        nav a{
+            color: white;
+            text-decoration: none;
+        }
+        body{
+            background-color: rgb(56, 53, 53);
+            color: white;
+            
+        }
+        .center span{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 35%;
+            font-size: 1rem;
+            margin-left: 290px;
+        }
+        #clock{
+            display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  width: 300px;
+  height: 50px;
+  margin: 0 auto;
+  background-color: rgb(243, 73, 7);
+  border-radius: 10px;
+  text-align: center;
+  position: absolute;
+  top: 50%; /* Centers vertically */
+  left: 50%; /* Centers horizontally */
+  color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#">Home</a>
+        <a href="youtube.com" target="_blank">Youtube</a>
+    </nav>
+    <div class="center">
+        <div class="banner"><span>Your local time</span></div>
+        <div id="clock"></div>
+    </div>
+    
+
+    <script>
+       const clock1 = document.getElementById('clock')
+        //or document.querySelector
+        
+        setInterval(function(){
+            let date = new Date();
+       clock1.innerHTML =date.toLocaleTimeString();
+        },1000)
+
+    </script>
+</body>
+</html>
