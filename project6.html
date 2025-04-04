@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        nav{
+            width: 100vw;
+            height: 50px;
+            background-color: rgb(238, 236, 236);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        nav a{
+            width: 70px;
+            height: 20px;
+            margin: 10px;
+            padding: 5px;
+            text-align: center;
+            text-decoration: none;
+            border: 2px solid black;
+            border-radius: 8%;
+            color: black;
+        }
+        nav a:hover{
+            background-color: rgb(194, 191, 191);
+            cursor: pointer;
+        }
+        body{
+            background-color: black;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#">Home</a>
+        <a href="https://youtube.com" target="_blank">youtube</a>
+    </nav>
+    <h1>Start should change the Background color every second</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    // Hex color to  generate random color
+    const randomcolor = function(){
+        const hex ="o123456789ABCDEF"
+        let color = '#'
+        for(let i =0;i<6;i++)
+    {
+        color +=hex[Math.floor(Math.random()*16)]
+    }
+    return color
+    };
+    let intervalId
+    const startChangingColor = function(){
+
+       intervalId = setInterval(ChangeBgColor,1000)
+
+        function ChangeBgColor(){
+        document.body.style.backgroundColor = randomcolor();
+    }
+
+    };
+    const stopChangingColor = function(){
+        clearInterval(intervalId)
+
+};
+    document.querySelector('#start').addEventListener('click',startChangingColor)
+    document.querySelector('#stop').addEventListener('click',stopChangingColor)
+</script>
+</html>

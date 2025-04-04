@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>AMANZING IMAGES</h2>
+    <div>
+        <ul>
+        <li><img src="https://img.freepik.com/premium-photo/beautiful-small-bird_950428-94.jpg" alt="" id="p1" width="180px", height="150px"></li>
+        <li><img src="https://tse3.mm.bing.net/th?id=OIP.e4mWP5WHl3cJq0HHcUlDYQHaE6&pid=Api&P=0&h=220" alt="" id ="p2" width="180px", height="150px"></li>
+        <li><img src="https://tse1.mm.bing.net/th?id=OIP.niifJeTdWsgQMOoZxTVe9QHaEo&pid=Api&P=0&h=220" alt="" id ="p3" width="180px", height="150px"></li>
+        <li><a style= "color:blue" href="https://google.com" id ="p4">Gooogle</a></li>
+    </ul>
+    </div>
+</body>
+<script>
+    // document.getElementById('p1').onclick = function(){
+    //     alert("picture 1 is clicked")
+    // }
+
+    // document.getElementById('p1').addEventListener('click', function(){
+    //         alert('p1 is clicked again' )
+    // })   
+    //attachEvent()
+
+    // learn about type, timestamp, defaultPrevented
+    // target. toElement, srcElement, currentTarget
+
+    // document.getElementById('p4').addEventListener('click', function(e){
+    //     e.preventDefault();
+    // }, false)
+
+    document.querySelector('#p1').addEventListener('click', function(e){
+        let removeIt = e.target.parentNode
+        //removeIt.remove()
+        //or
+        removeIt.parentNode.removeChild(removeIt)
+    })
+</script>
+</html>
