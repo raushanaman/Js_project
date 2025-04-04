@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #86baa0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quiz-section{
+            background-color: white;
+            width: 50vw;
+            height: 60vh;
+            margin-top: 85px;
+            font-size: 20px;
+            padding: 30px;
+            border-radius: 5px;
+        }
+        #quiz{
+            padding: 7px;
+            margin: 7px;
+            
+        }
+         ul li{
+            list-style-type: none;
+            border: 1px solid black;
+            width: 440px;
+            border-radius: 20px;
+            padding: 10px;
+            margin-top: 10px; 
+            
+        }
+        .btn{
+            margin-top: 50px;
+            
+        }
+        #submit{
+            font-size: 20px;
+            border-radius: 5px;
+            width: 100px;
+            height: 40px;
+            background-color: rgb(4, 135, 4);
+        }
+        #submit:hover{
+            background-color: rgb(14, 233, 14);
+
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="quiz-section">
+        <div id="quiz">
+            <h2 class="question" id="quiz">Quiz question</h2>
+            <hr>
+            <br>
+            <ul>
+                <li>
+                    <input type="radio" name="answer" class="answer" id="a">
+                    <label for="a" class="option_a">Option A</label> <!-- Will be replaced by JS -->
+                </li>
+                <li>
+                    <input type="radio" name="answer" class="answer" id="b">
+                    <label for="b" class="option_b">Option B</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" class="answer" id="c">
+                    <label for="c" class="option_c">Option C</label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" class="answer" id="d">
+                    <label for="d" class="option_d">Option D</label>
+                </li>
+            </ul>
+            <br>
+            <hr>
+            <div class="btn">
+                <button type="submit" id="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    const quizData = [
+        {
+            question: "What does HTML stand for?",
+            options:[
+                "Hypertext Markup Language",
+                "Hyper Transfer Markup Language",
+                "Hypertext Machine Language",
+                "HyperLink and Text Markup Language",
+            ],
+            correct: 0,
+        },
+        {
+            question: "Which CSS property is used to control the spacing between elements?",
+            options:[
+                "Margin",
+                "Padding",
+                "spacing",
+                "border-spacing",
+            ],
+            correct: 1,
+        },
+        {
+            question: "What is the JavaScript function used to select an HTML element by its id?",
+            options:[
+                "document.query",
+                "getElementById",
+                "selectElement",
+                "FindElementById",
+            ],
+            correct: 1,
+        },
+        {
+            question: "Which HTML tag is used to create a dropdown list?",
+            options:[
+                "<drop-down> tag",
+                "<select> tag",
+                "<option> tag",
+                "None of the above",
+            ],
+            correct: 1,
+        },
+        {
+            question: "Which HTML tag is used to create a ordered list?",
+            options:[
+                "<ul>",
+                "<li>",
+                "<ol>",
+                "<dl>",
+            ],
+            correct: 2,
+        },
+
+    ];
+
+    // step 2:
+
+    const questionElem = document.querySelector(".question");
+const optionElems = document.querySelectorAll("label[class^='option_']");
+const submitBtn = document.querySelector("#submit");
+const answerInputs = document.querySelectorAll(".answer");
+
+let currentQuiz = 0;
+let score = 0;
+
+// Load Quiz Question
+const loadQuiz = () => {
+    // Deselect all radio buttons
+    answerInputs.forEach(input => (input.checked = false));
+
+    const { question, options } = quizData[currentQuiz];
+    questionElem.innerText = question;
+
+    // Update options
+    optionElems.forEach((label, index) => {
+        label.innerText = options[index];
+    });
+};
+
+
+
+    loadQuiz();
+//step: 4
+
+const checkAnswer = () => {
+    let selectedAnswer;
+    answerInputs.forEach((input, index) => {
+        if (input.checked) {
+            selectedAnswer = index;
+        }
+    });
+
+    // Compare with correct answer
+    if (selectedAnswer === quizData[currentQuiz].correct) {
+        score++;
+    }
+};
+
+submitBtn.addEventListener("click", () => {
+    checkAnswer();
+    currentQuiz++;
+
+    if (currentQuiz < quizData.length) {
+        loadQuiz(); // Load next question
+    } else {
+        // Show results
+        document.querySelector(".quiz-section").innerHTML = `
+            <h2>Quiz Completed!</h2>
+            <p>Your score: ${score} / ${quizData.length}</p>
+            <button onclick="location.reload()">Restart Quiz</button>
+        `;
+    }
+});
+
+      
+</script>
+
+</html>
